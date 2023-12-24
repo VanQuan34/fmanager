@@ -1,0 +1,19 @@
+<mo-wb-upload
+  (onReadFileSuccess)="handleUploadFile($event)">
+</mo-wb-upload>
+<p>Spinner</p>
+<div class="position-relative mo-wb-h-200px">
+  <mo-wb-components-spinner
+    [size]="'l'">
+  </mo-wb-components-spinner>
+</div>
+<mo-wb-components-input-number
+  [step]="1"
+  [value]="30"
+  [max]="100"
+  [min]="0"
+  [unit]="'px'"
+  [hasPlusButton]="true"
+  [classInclude]="'mo-wb-w-120px mo-wb-ml-10px'"
+  (onValueChanged)="handleOnWidthChange($event)">
+</mo-wb-components-input-number>

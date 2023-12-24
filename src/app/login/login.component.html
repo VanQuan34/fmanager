@@ -1,0 +1,35 @@
+<!-- login.component.html -->
+<div>
+  <label for="username">Username:</label>
+  <input id="username" [(ngModel)]="username" placeholder="Enter your username" />
+
+  <label for="password">Password:</label>
+  <input type="password" id="password" [(ngModel)]="password" placeholder="Enter your password" />
+
+  <button (click)="login()">Login</button>
+  <mo-wb-components-button
+    [type]="'pri'"
+    [label]="'Đăng nhập' | translate"
+    [classInclude]="'selected mo-wb-mr-10px'"
+    [isPending]="isPending"
+    [classIcon]="'mo-wb-ml-5px mo-icn-survey_photo_align_left_selected'"
+    (onClick)="handleOnSelectTextAlign('flex-start')">
+  </mo-wb-components-button>
+    <mo-wb-components-input 
+      [placeholder]="'Nhập nội dung'"
+      [classInclude]="'mo-wb-w-200px'">
+    </mo-wb-components-input>
+</div>
+<file-manager-dashboard>
+</file-manager-dashboard>
+<mo-wb-components-toggle_panel-section 
+    [title]="'Màu tô'"
+    [isOpen]="true">
+    <div class="d-flex align-items-center justify-content-between mo-wb-border-bottom-general mo-wb-pb-12px mo-wb-mb-12px">
+      <div class="mo-wb-f-b2">{{'Áp dụng viền'}}</div>
+      <mo-wb-components-button-toggle_button
+        [active]="isActive"
+        (onChangeToggle)="handleOnActiveBorder($event)">
+      </mo-wb-components-button-toggle_button>
+    </div>
+  </mo-wb-components-toggle_panel-section>

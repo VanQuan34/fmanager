@@ -1,0 +1,11 @@
+$lineHeights: 100 125 150;
+
+@each $lineHeight in $lineHeights { 
+  .#{$prefixCss}lineHeight-#{$lineHeight} {
+    line-height: #{"#{$lineHeight}% !important;;"};
+  } 
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
