@@ -2,10 +2,10 @@
   #menuToggleEl
   class="mo-wb-menu-toggle mo-wb-h-28px mo-wb-w-28px mo-wb-border-radius-4px mo-wb-cursor-pointer 
     d-flex align-items-center justify-content-center mo-wb-cursor-pointer {{ classInclude }} "
-  [ngClass]="{'selected mo-wb-bg-pri-l5': isOpen , 'mo-wb-bg-hover-pri-l2': !isOpen}"
+  [ngClass]="{'selected mo-wb-bg-pri-l5': isOpen , 'mo-wb-bg-hover-pri-l1': !isOpen}"
   (click)="handleOnMenuToggleClick($event, menuToggleEl);">
 
-  <i class="mo-wb-menu-icon mo-wb-rotate-90deg mo-icn-dots mo-wb-font-size-12px mo-wb-cursor-pointer"></i>
+  <i class="mo-wb-menu-icon {{icon ? icon : 'mo-wb-rotate-90deg mo-icn-dots'}} mo-wb-font-size-15px mo-wb-cursor-pointer"></i>
 
   <div *ngIf="isOpen"
     class="mo-wb-menu-overlay"

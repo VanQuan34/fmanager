@@ -1,0 +1,18 @@
+<div class="navbar-nav position-fixed mo-wb-top-0 mo-wb-left-0 w-100 mo-wb-p-15px d-none d-block-s1 mo-wb-bg-pri-l1 mo-wb-z-index-2500">
+<div class="d-flex align-items-center justify-content-between">
+  <div class="menu-toggle mo-wb-color-w"
+    (click)="handleOnClickToggleMenu($event)">
+    <i class="mo-icn-Table-view mo-wb-font-size-16px mo-wb-font-weight-600"></i>
+  </div>
+</div>
+</div>
+<div class="d-flex h-100">
+  <file-manager-sidebar
+    [isClick]="isToggle"
+    [menuActive]="'dashboard'">
+  </file-manager-sidebar>
+  <div class="content mo-wb-ml-120px w-100 mo-wb-pl-15px">
+    <file-manager-topbar>
+    </file-manager-topbar>
+  </div>
+</div>

@@ -18,7 +18,23 @@ export class ToastTranslateService {
 		if (interpolateParams) {
 			messageTranslate = this._translate.instant(message, interpolateParams);
 		}
-		// IntegrateMicroSites.showToast(type === 'warning' ? 'warn' : type, messageTranslate);
+		switch (type) {
+			case 'success':
+				this._toast.success(messageTranslate, title);
+				break;
+			case 'error':
+				this._toast.error(messageTranslate, title);
+				break;
+			case 'warning':
+				this._toast.warning(messageTranslate, title);
+				break;
+			case 'info':
+				this._toast.info(messageTranslate, title);
+				break;
+			default:
+				break;
+		}
+		
 	}
 
 	get ToastService() {

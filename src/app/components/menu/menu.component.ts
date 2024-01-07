@@ -33,6 +33,7 @@ export class MoWbMenuComponent extends MoWbBaseComponent {
   @Input() left: number = 0;
   @Input() pos: 'top' | 'left' | 'right' | 'bottom' = 'right';
   @Input() isActionMenu: boolean;
+  @Input() icon: string;
 
   @Output() onClickToggle = new EventEmitter<any>();
   @Output() onSelectItem = new EventEmitter<IMenuListItem>();

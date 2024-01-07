@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     // Check if user is already authenticated when the LoginComponent is initialized
     if (this.authService.isAuthenticatedUser()) {
       // Redirect to the feature component if already authenticated
-      this.router.navigate(['/feature']);
+      this.router.navigate(['/dashboard']);
     } else{
       this.router.navigate(['/login']);
     }
@@ -40,8 +40,8 @@ export class LoginComponent implements OnInit {
       // Check for a redirect URL
       const redirectUrl = this.authService.getRedirectUrl();
 
-      // Redirect to the original requested URL or default to '/feature'
-      this.router.navigate([redirectUrl || '/feature']);
+      // Redirect to the original requested URL or default to '/dashboard'
+      // this.router.navigate([redirectUrl || '/dashboard']);
 
       // Clear the redirect URL after successful login
       this.authService.setRedirectUrl('');

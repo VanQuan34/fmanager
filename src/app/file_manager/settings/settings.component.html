@@ -1,0 +1,25 @@
+<div class="d-flex h-100">
+  <file-manager-sidebar
+    [menuActive]="'settings'">
+  </file-manager-sidebar>
+  <div class="content mo-wb-ml-120px w-100 mo-wb-pl-15px">
+    <file-manager-topbar>
+    </file-manager-topbar>
+    <h2 class="mo-wb-font-size-22px">{{'Settings' | translate}}</h2>
+    <div class="tab-list mo-wb-mt-15px">
+      <ul class="d-flex mo-wb-p-0">
+        <li *ngFor="let item of menuItems"
+         class="d-flex mo-wb-py-8px mo-wb-px-15px mo-wb-cursor-pointer mo-wb-mr-8px {{item.id === tabActive.id ? 'mo-wb-bg-pri mo-wb-color-fff' : 'mo-wb-f-b1'}} mo-wb-border-radius-4px"
+         (click)="handleOnClickTab(item)"
+         >{{item.name}}</li>
+      </ul>
+      <div class="mo-wb-border-general w-100 mo-wb-mt-30px position-relative">
+        <div class="position-absolute mo-wb-left-0 mo-wb-w-120px mo-wb-bg-pri mo-wb-h-1px"></div>
+      </div>
+      <file-manager-settings-account
+        [tabActive]="tabActive"
+        [user]="userInfo">
+      </file-manager-settings-account>
+    </div>
+  </div>
+</div>

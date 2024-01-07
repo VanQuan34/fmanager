@@ -15,9 +15,10 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { LANGUAGE } from './common/language.define';
-import { MoWbFileManagerModule } from './file_manager/dashborad/dashboard.modules';
+import { MoWbFileManagerModule } from './file_manager/file-manager.modules';
 import { ToastTranslateService } from './api/common/toast-translate.service';
 import { MoWbCommonServiceModule } from './api/common/common-service.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -33,6 +34,7 @@ export function createTranslateLoader(http: HttpClient) {
       MoWbFileManagerModule,
       HttpClientModule,
       MoWbCommonServiceModule,
+      BrowserAnimationsModule,
       TranslateModule.forRoot({
         loader: {
           provide: TranslateLoader,

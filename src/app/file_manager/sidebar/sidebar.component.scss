@@ -1,0 +1,14 @@
+.menu-items li:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: #fff !important;
+}
+.flex-grow-1 {
+    -ms-flex-positive: 1!important;
+    flex-grow: 1!important;
+}
+.flex-1{
+    flex: 1;
+}
+.active{
+    pointer-events: none;
+}

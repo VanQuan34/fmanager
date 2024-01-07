@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
@@ -7,9 +7,14 @@ import { Router } from '@angular/router';
   templateUrl: './feature.component.html',
   styleUrls: ['./feature.component.css']
 })
-export class FeatureComponent {
-  constructor(private authService: AuthService, private router: Router) {
 
+export class FeatureComponent {
+  @HostListener('window:storage')
+  onStorageChange(event: any) {
+    console.log('change...', event);
+  }
+
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit(){

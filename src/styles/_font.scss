@@ -21,6 +21,7 @@ $SVN-Poppins-Semibold: SVN-Poppins-Semibold, Arial, Helvetica, sans-serif;
 $fontSize: 2px 3px 4px 5px 6px 8px 9px 10px 11px 12px 13px 14px 15px 16px 17px 18px 19px 20px 21px 22px 24px 25px 26px 28px 30px 32px
   35px 36px 40px 46px 50px 60px 64px 75px 80px 85px 88px 100px 118px 120px 140px 143px 150px 160px 190px 218px;
 $line-heights: normal 12px 15px 16px 18px 20px 24px 27px 30px 36px;
+$fontWeight: 300 400 500 600 700 900;
 
 
 @each $val in $fontSize {
@@ -38,6 +39,12 @@ $line-heights: normal 12px 15px 16px 18px 20px 24px 27px 30px 36px;
 @each $val in $line-heights {
   .#{$prefixCss}line-height-#{$val} {
     line-height: $val !important;
+  }
+}
+
+@each $val in $fontWeight {
+  .#{$prefixCss}font-weight-#{$val} {
+    font-weight: $val !important;
   }
 }
 

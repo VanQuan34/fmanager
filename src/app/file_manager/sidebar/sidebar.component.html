@@ -1,0 +1,28 @@
+<div class="navigation mo-wb-bg-pri-l1 h-100 mo-wb-w-110px position-fixed mo-wb-left-0 mo-wb-top-0 mo-wb-z-index-2500 {{!isClick ? '' : 'd-none-s1'}}">
+  <div class="logo-site mo-wb-p-20px mo-wb-h-110px">
+    <img src="./assets/images/logo-site.png" class="w-100" alt="logo-site">
+  </div>
+  <div class="mo-wb-p-10px">
+    <ul class="menu-items mo-wb-p-0 d-flex flex-column flex-1">
+      <li class="menu text-center
+      mo-wb-h-80px mo-wb-mb-8px mo-wb-border-radius-4px mo-wb-font-size-13px {{menu.classInclude}} {{menu.id === menuActive ? 'mo-wb-color-pri active' : 'mo-wb-color-fff'}}"
+      [class.mo-wb-bg-pri-l2]="menu.id === menuActive"
+      *ngFor="let menu of menuItems">
+        <a href="{{menu.link}}" routerLink="/list" class="d-flex align-items-center flex-column justify-content-center h-100">
+          <i class="w-100 mo-wb-font-size-18px {{menu.icon}}"></i>
+          <p class="mo-wb-f2 mo-wb-mt-8px">{{menu.name}}</p>
+        </a>
+      </li>
+    </ul>
+    <div class="position-fixed settings text-center mo-wb-w-90px mo-wb-bottom-0
+    mo-wb-h-80px mo-wb-mb-8px mo-wb-border-radius-4px mo-wb-font-size-13px {{ menuActive === 'settings' ? 'mo-wb-color-pri active' : 'mo-wb-color-fff mo-wb-bg-pri'}}"
+    [class.mo-wb-bg-pri-l2]="menuActive === 'settings'">
+      <a href="/settings" routerLink="/settings" class="d-flex align-items-center flex-column justify-content-center h-100">
+        <i class="w-100 mo-wb-font-size-18px mo-icn-setting"></i>
+        <p class="mo-wb-f2 mo-wb-mt-8px">Settings</p>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="overlay position-fixed mo-wb-left-0 mo-wb-top-0 mo-wb-bg-btn-txt mo-wb-z-index-1000 w-100 h-100 mo-wb-opacity-8 {{!isClick ? '' : 'd-none'}}"
+  (click)="handleOnClickOverlay($event)"></div>

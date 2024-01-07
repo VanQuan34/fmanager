@@ -1,0 +1,75 @@
+<div *ngIf="tabActive.id === 'account'" class="ccount-info mo-wb-mt-30px">
+  <div class="d-flex align-items-center">
+    <div class="mo-wb-w-40px mo-wb-h-40px d-flex align-items-center justify-content-center mo-wb-color-fff mo-wb-f-b1 mo-wb-border-radius-50px" 
+    [style.background-color]="user.email | getRandomColor">{{user.name | getFirstCharacter}}
+  </div>
+  <p class="mo-wb-f-b1 mo-wb-ml-15px">{{user.name | translate}}</p>
+  </div>
+  <div class="mo-wb-w-600px mo-wb-mt-30px">
+    <div class="d-flex align-items-center">
+      <div class="w-50">
+      <label class="mo-wb-f-b1 mo-wb-mb-8px">Name</label>
+        <mo-wb-components-input
+          [value]="user.name"
+          [classInclude]="''">
+        </mo-wb-components-input>
+      </div>
+      <div class="w-50 mo-wb-ml-15px">
+        <label class="mo-wb-f-b1 mo-wb-mb-8px">Role</label>
+          <mo-wb-components-select
+            [type]="'singe'"
+            [items]="roleList"
+            [classInclude]="''"
+            [selectedIds]="[role]"
+            (onSelectedChange)="handleOnSelectRole($event)">
+          </mo-wb-components-select>
+        </div>
+    </div>
+
+    <div class="d-flex align-items-center mo-wb-mt-20px">
+      <div class="w-50">
+      <label class="mo-wb-f-b1 mo-wb-mb-8px">Username</label>
+        <mo-wb-components-input
+          [value]="user.username"
+          [classInclude]="''">
+        </mo-wb-components-input>
+      </div>
+      <div class="w-50 mo-wb-ml-15px">
+        <label class="mo-wb-f-b1 mo-wb-mb-8px">Status</label>
+          <mo-wb-components-select
+            [type]="'singe'"
+            [items]="roleList"
+            [classInclude]="''"
+            [selectedIds]="[role]"
+            (onSelectedChange)="handleOnSelectRole($event)">
+          </mo-wb-components-select>
+        </div>
+    </div>
+
+    <div class="d-flex align-items-center mo-wb-mt-20px">
+      <div class="w-50">
+      <label class="mo-wb-f-b1 mo-wb-mb-8px">Email</label>
+        <mo-wb-components-input
+          [value]="user.email"
+          [classInclude]="''">
+        </mo-wb-components-input>
+      </div>
+      <div class="w-50 mo-wb-ml-15px">
+        <label class="mo-wb-f-b1 mo-wb-mb-8px">Department</label>
+          <mo-wb-components-select
+            [type]="'singe'"
+            [items]="roleList"
+            [classInclude]="''"
+            [selectedIds]="[role]"
+            (onSelectedChange)="handleOnSelectRole($event)">
+          </mo-wb-components-select>
+        </div>
+    </div>
+    <mo-wb-components-button
+      [type]="'pri'"
+      [label]="'Cập nhật'"
+      [classInclude]="'mo-wb-mt-20px'"
+      (onClick)="handleOnClickUpdateUser($event)">
+    </mo-wb-components-button>
+  </div>
+</div>
