@@ -18,11 +18,13 @@
 .navigation{
     transition:  ease .3s;
 }
-.navigation.d-none-s1{
-    display: block !important;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateX(-100%);
+@media (max-width: 767px){
+    .navigation.d-none-s1{
+        display: block !important;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(-100%);
+    }
 }
 @keyframes left-to-right {
     0%{
