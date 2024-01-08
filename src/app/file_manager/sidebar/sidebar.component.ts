@@ -1,5 +1,5 @@
 // login.component.ts
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ToastTranslateService } from 'src/app/api/common/toast-translate.service';
 export interface IMenuSidebar{
   id: string,
@@ -22,7 +22,9 @@ export class FileManagerSidebarComponents implements OnInit {
   menuItems: IMenuSidebar[];
 
   @Input() menuActive: string;
-  @Input() isClick: boolean;
+  @Input() isToggle: boolean;
+
+  @ViewChild('sidebar') _sidebar: HTMLElement;
 
   @Output() onClickOverlay = new EventEmitter;
 
@@ -50,9 +52,6 @@ export class FileManagerSidebarComponents implements OnInit {
     ]
   }
 
-  handleOnClickOverlay(e:MouseEvent){
-    this.isClick = !this.isClick;
-    this.onClickOverlay.emit();
-  }
+  ngOnAfterViewInit(){}
 
 }

@@ -12,3 +12,23 @@
 .active{
     pointer-events: none;
 }
+.animation{
+    animation: left-to-right ease .3s;
+}
+.navigation{
+    transition:  ease .3s;
+}
+.navigation.d-none-s1{
+    display: block !important;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-100%);
+}
+@keyframes left-to-right {
+    0%{
+        transform: translateX(-100%);
+    }
+    100%{
+        transform: translateX(0%);
+    }
+}

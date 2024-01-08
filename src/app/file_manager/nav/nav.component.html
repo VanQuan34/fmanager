@@ -1,0 +1,10 @@
+<div class="navbar-nav position-fixed mo-wb-top-0 mo-wb-left-0 w-100 mo-wb-p-15px d-none d-block-s1 mo-wb-bg-pri-l1 mo-wb-z-index-2500">
+  <div class="d-flex align-items-center justify-content-between">
+    <div class="menu-toggle mo-wb-color-w"
+      (click)="handleOnClickToggleMenu($event)">
+      <i class="mo-icn-Table-view mo-wb-font-size-16px mo-wb-font-weight-600"></i>
+    </div>
+  </div>
+</div>
+<div class="overlay position-fixed mo-wb-left-0 mo-wb-top-0 mo-wb-bg-btn-txt mo-wb-z-index-1000 w-100 h-100 mo-wb-opacity-8 {{!isToggle ? 'd-none' : ''}}"
+  (click)="handleOnClickToggleMenu($event)"></div>

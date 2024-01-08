@@ -15,10 +15,14 @@ export class FileManagerComponents implements OnInit {
   isToggle: boolean;
 
   ngOnInit(): void {
-    this.isToggle = true;
   }
 
-  handleOnClickToggleMenu(e: MouseEvent){
+  handleOnClickNav(e: boolean){
+    this.isToggle = e;
+    console.log('this.isToggle=', this.isToggle);
+  }
+
+  handleOnClickOverlay(e: MouseEvent){
     this.isToggle = !this.isToggle;
   }
 
