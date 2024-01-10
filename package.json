@@ -27,6 +27,7 @@
     "jquery": "^3.7.1",
     "lodash": "^4.17.21",
     "mini-css-extract-plugin": "^2.7.6",
+    "ngx-color": "^8.0.3",
     "ngx-toastr": "^16.2.0",
     "ngx-virtual-scroller": "^3.0.3",
     "postcss-loader": "^7.3.3",

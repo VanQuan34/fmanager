@@ -16,6 +16,8 @@ import { FileManagerAuthApiServiceModule } from '../api/auth/authApi.module';
 import { MoWbCheckboxModule } from "../components/checkbox/checkbox.module";
 import { MoWbTooltipModule } from "../components/tooltip/tooltip.module";
 import { FileManagerNavComponents } from './nav/nav.component';
+import { ColorSketchModule } from 'ngx-color/sketch';
+import { ColorSwatchesModule } from 'ngx-color/swatches';
 
 @NgModule({
     declarations: [
@@ -48,7 +50,9 @@ import { FileManagerNavComponents } from './nav/nav.component';
         FileManagerSettingsAccountPipeModule,
         FileManagerAuthApiServiceModule,
         MoWbCheckboxModule,
-        MoWbTooltipModule
+        MoWbTooltipModule,
+        ColorSketchModule,
+        ColorSwatchesModule
     ]
 })
   export class MoWbFileManagerModule { }

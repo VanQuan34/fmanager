@@ -8,7 +8,7 @@ import { MoWbButtonModule } from './button/button.module';
 // import { MoWbDropDownModule } from './dropdown/dropdown.module';
 import { MoWbToggleModule } from './button/toggle-button/toggle.module';
 import { MoWbSpinnerModule } from './spinner/spinner.module';
-// import { MoWbColorModule } from './color/color.module';
+import { MoWbColorModule } from './color/color.module';
 import { MoWbTogglePanelModule } from './toggle-panel/toggle-panel.module';
 import { MoWbSliderModule } from './slider/slider.module';
 // import { MoWbPopupModule } from './popup/popup.module';
@@ -50,7 +50,7 @@ import { MoWbLoginModule } from './login/login.module';
     // MoWbCategoryModule,
     // MoWbMenuDropDownModule,
     // MoWbModalModule,
-    // // MoWbColorModule,
+    MoWbColorModule,
     // MoWbTabModule,
     MoWbTogglePanelModule,
     MoWbUploadModule,
@@ -89,7 +89,7 @@ import { MoWbLoginModule } from './login/login.module';
     // MoWbCategoryModule,
     // MoWbMenuDropDownModule,
     MoWbModalModule,
-    // // MoWbColorModule,
+    MoWbColorModule,
     // MoWbTabModule,
     MoWbTogglePanelModule,
     MoWbUploadModule,
