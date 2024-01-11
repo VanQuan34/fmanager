@@ -1,28 +1,62 @@
-<div *ngIf="tabActive.id === 'account'" class="ccount-info mo-wb-mt-30px">
+<div *ngIf="tabActive.id === 'account'" class="account-info mo-wb-mt-30px mo-wb-overflow-auto" style="height: calc(100% - 220px);">
   <div class="d-flex align-items-center">
     <div class="mo-wb-w-40px mo-wb-h-40px d-flex align-items-center justify-content-center mo-wb-color-fff mo-wb-f-b1 mo-wb-border-radius-50px" 
-    [style.background-color]="user.email | getRandomColor">{{user.name | getFirstCharacter}}
+    [style.background-color]="'' | getRandomColor">{{userInfo.firstName | getFirstCharacter}}
   </div>
-  <p class="mo-wb-f-b1 mo-wb-ml-15px">{{user.name | translate}}</p>
+  <p class="mo-wb-f-b1 mo-wb-ml-15px">{{userInfo.firstName+ ' '+userInfo.lastName | translate}}</p>
   </div>
   <div class="mo-wb-w-600px mo-wb-mt-30px">
     <div class="d-flex align-items-center">
       <div class="w-50">
-      <label class="mo-wb-f-b1 mo-wb-mb-8px">Name</label>
+      <label class="mo-wb-f-b1 mo-wb-mb-8px">First name<span class="mo-wb-color-r mo-wb-ml-3px">*</span></label>
         <mo-wb-components-input
-          [value]="user.name"
-          [classInclude]="''">
+          #firstName
+          [value]="userInfo.firstName"
+          [classInclude]="''"
+          (onValueChanged)="handleOnChangeName('first_name')">
         </mo-wb-components-input>
       </div>
       <div class="w-50 mo-wb-ml-15px">
+        <label class="mo-wb-f-b1 mo-wb-mb-8px">Last name<span class="mo-wb-color-r mo-wb-ml-3px">*</span></label>
+          <mo-wb-components-input
+            #lastName
+            [value]="userInfo.lastName"
+            [classInclude]="''"
+            (onValueChanged)="handleOnChangeName('last_name')">
+          </mo-wb-components-input>
+        </div>
+    </div>
+
+    <div class="d-flex align-items-center mo-wb-mt-20px">
+      <div class="w-100">
+      <label class="mo-wb-f-b1 mo-wb-mb-8px">Email<span class="mo-wb-color-r mo-wb-ml-3px">*</span></label>
+        <mo-wb-components-input
+          [value]="userInfo.email"
+          [classInclude]="''">
+        </mo-wb-components-input>
+      </div>
+    </div>
+
+    <div class="d-flex align-items-center mo-wb-mt-20px">
+      <div class="w-50">
         <label class="mo-wb-f-b1 mo-wb-mb-8px">Role</label>
           <mo-wb-components-select
             [type]="'singe'"
             [items]="roleList"
             [classInclude]="''"
-            [selectedIds]="[role]"
+            [selectedIds]="[userInfo.role]"
             (onSelectedChange)="handleOnSelectRole($event)">
           </mo-wb-components-select>
+        </div>
+      <div class="w-50 mo-wb-ml-15px">
+        <label class="mo-wb-f-b1 mo-wb-mb-8px">Status</label>
+        <div class="d-flex align-items-center">
+          <mo-wb-components-button-toggle_button 
+            [active]="userInfo.status"
+            (onChangeToggle)="handleOnChangeStatus($event)">
+          </mo-wb-components-button-toggle_button>
+          <p class="mo-wb-ml-15px">{{'Trạng thái hoạt động' | translate}}</p>
+        </div> 
         </div>
     </div>
 
@@ -30,27 +64,8 @@
       <div class="w-50">
       <label class="mo-wb-f-b1 mo-wb-mb-8px">Username</label>
         <mo-wb-components-input
-          [value]="user.username"
-          [classInclude]="''">
-        </mo-wb-components-input>
-      </div>
-      <div class="w-50 mo-wb-ml-15px">
-        <label class="mo-wb-f-b1 mo-wb-mb-8px">Status</label>
-          <mo-wb-components-select
-            [type]="'singe'"
-            [items]="roleList"
-            [classInclude]="''"
-            [selectedIds]="[role]"
-            (onSelectedChange)="handleOnSelectRole($event)">
-          </mo-wb-components-select>
-        </div>
-    </div>
-
-    <div class="d-flex align-items-center mo-wb-mt-20px">
-      <div class="w-50">
-      <label class="mo-wb-f-b1 mo-wb-mb-8px">Email</label>
-        <mo-wb-components-input
-          [value]="user.email"
+          [classInput]="'mo-wb-disabled'"
+          [value]="userInfo.username"
           [classInclude]="''">
         </mo-wb-components-input>
       </div>
@@ -58,9 +73,9 @@
         <label class="mo-wb-f-b1 mo-wb-mb-8px">Department</label>
           <mo-wb-components-select
             [type]="'singe'"
-            [items]="roleList"
+            [items]="departmentList"
             [classInclude]="''"
-            [selectedIds]="[role]"
+            [selectedIds]="[userInfo.department]"
             (onSelectedChange)="handleOnSelectRole($event)">
           </mo-wb-components-select>
         </div>
@@ -73,3 +88,7 @@
     </mo-wb-components-button>
   </div>
 </div>
+
+<file-manager-settings-security
+  *ngIf="tabActive.id === 'security'">
+</file-manager-settings-security>

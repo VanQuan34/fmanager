@@ -5,6 +5,7 @@ import { FileManagerAuthApiService } from './api/auth/authApi';
 import { ToastTranslateService } from './api/common/toast-translate.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { CacheKeys } from './common/define/cache-keys.define';
+import { GLOBAL } from './common/types/global/global';
 @Injectable({
   providedIn: 'root'
 })
@@ -62,8 +63,10 @@ export class AuthService {
     const token = localStorage.getItem(CacheKeys.KEY_TOKEN);
     const decodeToken = token && this.jwtHelper.decodeToken(token) || null;
     const expired = decodeToken && decodeToken.exp;
+    const userInfo = decodeToken && decodeToken.sub;
     const currentTime = Math.floor(new Date().getTime() / 1000);
     if(expired && expired > currentTime ){
+      GLOBAL.userInfo = userInfo;
       return true;
     }
 

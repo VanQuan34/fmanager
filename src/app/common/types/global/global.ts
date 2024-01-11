@@ -1,6 +1,6 @@
-
 interface IGLOBAL {
-  isError401?: boolean
+  isError401?: boolean,
+  userInfo?: any,
 }
 
 const GLOBAL: IGLOBAL = {

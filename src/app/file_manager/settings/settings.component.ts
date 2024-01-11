@@ -21,7 +21,7 @@ export class FileManagerSettingsComponents implements OnInit {
         name: 'Account'
       },
       {
-        id: 'information',
+        id: 'security',
         name: 'Information'
       },
       
@@ -30,14 +30,6 @@ export class FileManagerSettingsComponents implements OnInit {
       id: 'account',
       name: 'Account'
     };
-    this.userInfo = {
-      name: 'Tạ Văn Quân',
-      username: 'tavanquan0304',
-      role: 1,
-      status: 'active',
-      email: 'tavananhquan0304@gmail.com',
-      department: 'developer'
-    }
   }
 
   handleOnClickTab(item: IMenuSidebar){

@@ -17,7 +17,7 @@ export class FileManagerTopbarComponents implements OnInit {
   @Input() menuActive: string;
 
   constructor(
-    private router:Router,
+    private _router:Router,
   ){}
 
   ngOnInit(): void {
@@ -47,6 +47,9 @@ export class FileManagerTopbarComponents implements OnInit {
           window.location.href = '/login';
         })
         break;
+      case 'details':
+        this._router.navigate(['/settings']);
+        break;  
       default:;
       break;
     }

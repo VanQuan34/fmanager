@@ -16,6 +16,7 @@ import { FileManagerAuthApiServiceModule } from '../api/auth/authApi.module';
 import { MoWbCheckboxModule } from "../components/checkbox/checkbox.module";
 import { MoWbTooltipModule } from "../components/tooltip/tooltip.module";
 import { FileManagerNavComponents } from './nav/nav.component';
+import { FileManagerSettingsSecurityComponents } from './settings/security/security.component';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import { FileManagerNavComponents } from './nav/nav.component';
         FileManagerUsersComponents,
         FileManagerSettingsComponents,
         FileManagerSettingsAccountComponents,
-        FileManagerNavComponents
+        FileManagerNavComponents,
+        FileManagerSettingsSecurityComponents,
     ],
     exports: [
         FileManagerDashboard,
@@ -34,7 +36,8 @@ import { FileManagerNavComponents } from './nav/nav.component';
         FileManagerUsersComponents,
         FileManagerSettingsComponents,
         FileManagerSettingsAccountComponents,
-        FileManagerNavComponents
+        FileManagerNavComponents,
+        FileManagerSettingsSecurityComponents,
     ],
     providers: [
         ToastTranslateService

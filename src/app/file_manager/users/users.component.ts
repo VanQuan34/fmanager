@@ -2,6 +2,7 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FileManagerAuthApiService } from 'src/app/api/auth/authApi';
 import { ToastTranslateService } from 'src/app/api/common/toast-translate.service';
+import { GLOBAL } from 'src/app/common/types/global/global';
 import { MoWbDetectionComponent } from 'src/app/components/detection.component';
 import { MoWbTableComponent } from 'src/app/components/table/table.component';
 
@@ -180,6 +181,7 @@ export class FileManagerUsersComponents extends MoWbDetectionComponent {
     }
     if(response.code === 200){
       this.users = response.data;
+      GLOBAL.userInfo = this.users;
       console.log('response Users=', response);
     }
   }
