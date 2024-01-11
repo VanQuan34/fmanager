@@ -10,5 +10,30 @@
   <div class="content mo-wb-ml-120px w-100 mo-wb-pl-15px">
     <file-manager-topbar>
     </file-manager-topbar>
+    <!-- <color-sketch 
+      *ngIf="isShow"
+      [presetColors]="presetColors"
+      [width]="300"
+      (onChange)="handleChange($event)">
+    </color-sketch> -->
+
+    <!-- <color-swatches>
+    </color-swatches> -->
+    <code>
+      Color Object: {{color|json}}
+      <br><br>
+      Hexa Color: {{hexColor}}
+      <br><br>
+      RGBA Color: {{rgbaColor|json}}
+    </code>
+    <div class=" mo-wb-w-30px mo-wb-h-30px"
+      #colorSelect
+     [style.background-color]="colorFont"
+     (click)="handleOnClickToggleColor($event)">sdsds
+    </div>
+    <!-- <mo-wb-components-color
+      [parentEL]="_colorSelect">
+    </mo-wb-components-color> -->
+
   </div>
 </div>

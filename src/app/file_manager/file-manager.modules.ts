@@ -17,6 +17,7 @@ import { MoWbCheckboxModule } from "../components/checkbox/checkbox.module";
 import { MoWbTooltipModule } from "../components/tooltip/tooltip.module";
 import { FileManagerNavComponents } from './nav/nav.component';
 import { FileManagerSettingsSecurityComponents } from './settings/security/security.component';
+import { ColorSketchModule } from 'ngx-color/sketch';
 
 @NgModule({
     declarations: [
@@ -51,7 +52,8 @@ import { FileManagerSettingsSecurityComponents } from './settings/security/secur
         FileManagerSettingsAccountPipeModule,
         FileManagerAuthApiServiceModule,
         MoWbCheckboxModule,
-        MoWbTooltipModule
+        MoWbTooltipModule,
+        ColorSketchModule,
     ]
 })
   export class MoWbFileManagerModule { }
