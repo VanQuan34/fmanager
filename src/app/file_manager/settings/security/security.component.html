@@ -1,0 +1,48 @@
+<div class="account-info mo-wb-mt-30px mo-wb-overflow-auto" style="height: calc(100% - 220px);">
+  <div class="d-flex align-items-center">
+    <div class="mo-wb-w-40px mo-wb-h-40px d-flex align-items-center justify-content-center mo-wb-color-fff mo-wb-f-b1 mo-wb-border-radius-50px" 
+    [style.background-color]="'' | getRandomColor">{{userInfo.firstName | getFirstCharacter}}
+  </div>
+  <p class="mo-wb-f-b1 mo-wb-ml-15px">{{userInfo.firstName+ ' '+userInfo.lastName | translate}}</p>
+  </div>
+  <div class="mo-wb-w-400px mo-wb-mt-30px">
+    <div class="w-100">
+    <label class="mo-wb-f-b1 mo-wb-mb-8px">Mật khẩu cũ<span class="mo-wb-color-r mo-wb-ml-3px">*</span></label>
+      <mo-wb-components-input
+        #firstName
+        [value]=""
+        [placeholder]="'Nhập mật khẩu cũ'"
+        [classInclude]="''"
+        (onValueChanged)="handleOnChangeOldPassword($event)">
+      </mo-wb-components-input>
+    </div>
+    <div class="w-100 mo-wb-mt-20px">
+      <label class="mo-wb-f-b1 mo-wb-mb-8px">Mật khẩu mới<span class="mo-wb-color-r mo-wb-ml-3px">*</span></label>
+      <mo-wb-components-input 
+        #lastName 
+        [value]="" 
+        [placeholder]="'Nhập mật khẩu mới'"
+        [classInclude]="''"
+        (onValueChanged)="handleOnChangeNewPassword($event, 'new')">
+      </mo-wb-components-input>
+    </div>
+
+    <div class="d-flex align-items-center mo-wb-mt-20px">
+      <div class="w-100">
+      <label class="mo-wb-f-b1 mo-wb-mb-8px">Nhập lại mật khẩu mới<span class="mo-wb-color-r mo-wb-ml-3px">*</span></label>
+        <mo-wb-components-input
+          [value]=""
+          [classInclude]="''"
+          [placeholder]="'Nhập lại mật khẩu mới'"
+          (onValueChanged)="handleOnChangeNewPassword($event, 'repeat')">
+        </mo-wb-components-input>
+      </div>
+    </div>
+    <mo-wb-components-button
+      [type]="'pri'"
+      [label]="'Cập nhật'"
+      [classInclude]="'mo-wb-mt-20px'"
+      (onClick)="handleOnClickUpdateUser($event)">
+    </mo-wb-components-button>
+  </div>
+</div>
