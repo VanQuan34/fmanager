@@ -3,6 +3,7 @@ import {
 } from '@angular/core';
 import { MoWbBaseComponent } from '../base.component';
 import { ColorEvent } from 'ngx-color';
+import { CacheKeys } from 'src/app/common/define/cache-keys.define';
 
 interface IColorRgb {
   r: number,
@@ -35,6 +36,10 @@ export class MoWbColorComponent extends MoWbBaseComponent {
   @Output() onAcceptColor = new EventEmitter<any>;
 
   override ngOnInit() {
+    const theme = localStorage.getItem(CacheKeys.KEY_THEME);
+    let currentTheme = theme && JSON.parse(theme);
+    this.colorFont = currentTheme && currentTheme['--pri'] || '#226FF5';
+    
     if(!this.presetColors || !this.presetColors.length){
       this.presetColors = ['#D0021B', '#F5A623', '#F8E71C', '#8B572A', '#7ED321', '#417505', '#BD10E0', '#9013FE', '#4A90E2', '#50E3C2', '#B8E986', '#000000', '#4A4A4A', '#9B9B9B', '#FFFFFF'];
     }
@@ -74,8 +79,6 @@ export class MoWbColorComponent extends MoWbBaseComponent {
   }
 
   handleOverlayClick(){
-    this.colorFont = '#333';
-    this.onAcceptColor.emit(this.colorFont);
     this.onClose.emit();
   }
   

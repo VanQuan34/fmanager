@@ -18,6 +18,13 @@ import { MoWbTooltipModule } from "../components/tooltip/tooltip.module";
 import { FileManagerNavComponents } from './nav/nav.component';
 import { FileManagerSettingsSecurityComponents } from './settings/security/security.component';
 import { ColorSketchModule } from 'ngx-color/sketch';
+import { FileManagerSettingsAvatarComponents } from './settings/avatar/avatar.component';
+import { FileManagerListToolbarComponents } from './files/toolbar/toolbar.component';
+import { FileManagerListToolbarUploadComponents } from './files/toolbar/upload/upload.component';
+import { FileManagerFilesApiServiceModule } from '../api/files/filesApi.module';
+import { FileManagerListDetailsComponents } from './files/list/list.component';
+import { FileManagerListDetailsPreviewComponents } from './files/list/preview/preview.component';
+import { FileManagerListEditComponents } from './files/list/edit/edit.component';
 
 @NgModule({
     declarations: [
@@ -29,6 +36,12 @@ import { ColorSketchModule } from 'ngx-color/sketch';
         FileManagerSettingsAccountComponents,
         FileManagerNavComponents,
         FileManagerSettingsSecurityComponents,
+        FileManagerSettingsAvatarComponents,
+        FileManagerListToolbarComponents,
+        FileManagerListToolbarUploadComponents,
+        FileManagerListDetailsComponents,
+        FileManagerListDetailsPreviewComponents,
+        FileManagerListEditComponents
     ],
     exports: [
         FileManagerDashboard,
@@ -39,6 +52,12 @@ import { ColorSketchModule } from 'ngx-color/sketch';
         FileManagerSettingsAccountComponents,
         FileManagerNavComponents,
         FileManagerSettingsSecurityComponents,
+        FileManagerSettingsAvatarComponents,
+        FileManagerListToolbarComponents,
+        FileManagerListToolbarUploadComponents,
+        FileManagerListDetailsComponents,
+        FileManagerListDetailsPreviewComponents,
+        FileManagerListEditComponents
     ],
     providers: [
         ToastTranslateService
@@ -51,6 +70,7 @@ import { ColorSketchModule } from 'ngx-color/sketch';
         TranslateModule.forChild({}),
         FileManagerSettingsAccountPipeModule,
         FileManagerAuthApiServiceModule,
+        FileManagerFilesApiServiceModule,
         MoWbCheckboxModule,
         MoWbTooltipModule,
         ColorSketchModule,

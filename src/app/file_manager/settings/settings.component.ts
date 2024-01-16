@@ -13,6 +13,7 @@ export class FileManagerSettingsComponents implements OnInit {
   menuItems: IMenuSidebar[];
   tabActive: IMenuSidebar;
   userInfo: any;
+  isToggle:boolean;
 
   ngOnInit(): void {
     this.menuItems = [
@@ -35,6 +36,11 @@ export class FileManagerSettingsComponents implements OnInit {
   handleOnClickTab(item: IMenuSidebar){
     console.log('item=', item);
     this.tabActive = item;
+  }
+
+  handleOnClickNav(e: boolean){
+    this.isToggle = e;
+    console.log('this.isToggle=', this.isToggle);
   }
 
 }

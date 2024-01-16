@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastTranslateService } from 'src/app/api/common/toast-translate.service';
 import { CacheKeys } from 'src/app/common/define/cache-keys.define';
+import { GLOBAL } from 'src/app/common/types/global/global';
 import { IMenuListItem } from 'src/app/components/menu/menu.component';
 
 @Component({
@@ -13,14 +14,15 @@ import { IMenuListItem } from 'src/app/components/menu/menu.component';
 export class FileManagerTopbarComponents implements OnInit {
 
   menuItems: IMenuListItem[];
-
-  @Input() menuActive: string;
+  userInfo: any;
+  isShow: boolean;
 
   constructor(
     private _router:Router,
   ){}
 
   ngOnInit(): void {
+    this.userInfo = GLOBAL.userInfo;
     this.menuItems = [
       {
         id: 'name',
@@ -53,6 +55,21 @@ export class FileManagerTopbarComponents implements OnInit {
       default:;
       break;
     }
+  }
+
+  handleOnclickInfoUser(e: MouseEvent){
+    this._router.navigate(['/settings']);
+  }
+
+  handleOnclickLogout(e: MouseEvent){
+    localStorage.removeItem(CacheKeys.KEY_TOKEN);
+    setTimeout(()=>{
+      window.location.href = '/login';
+    }, 200)
+  }
+
+  handleOnClickLogin(e: MouseEvent){
+    this.isShow = !this.isShow;
   }
 
 }

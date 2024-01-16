@@ -6,7 +6,7 @@ import { MoWbButtonModule } from "../../button/button.module";
 import { MoWbRadioModule } from "../../radio/radio.module";
 import { MoWbSpinnerModule } from "../../spinner/spinner.module";
 import { MoWbTooltipModule } from "../../tooltip/tooltip.module";
-import { MoWbProgressBarModule } from '../../progressBar/progressBar.module'
+// import { MoWbProgressBarModule } from '../../progressBar/progressBar.module'
 
 @NgModule({
   imports: [
@@ -16,7 +16,7 @@ import { MoWbProgressBarModule } from '../../progressBar/progressBar.module'
     MoWbRadioModule,
     MoWbSpinnerModule,
     MoWbTooltipModule,
-    MoWbProgressBarModule
+    // MoWbProgressBarModule
   ],
   exports: [
     MoWbFileUploadV4Component,

@@ -1,9 +1,21 @@
+<file-manager-nav-components
+  (onClickToggle)="handleOnClickNav($event)">
+</file-manager-nav-components>
 <div class="d-flex h-100">
   <file-manager-sidebar
+    [isToggle]="isToggle"
     [menuActive]="'files'">
   </file-manager-sidebar>
-  <div class="content mo-wb-ml-120px w-100">
+  <div class="content mo-wb-ml-120px mo-wb-ml-0-s1 w-100">
     <file-manager-topbar>
     </file-manager-topbar>
+    <file-manager-list-toolbar
+      (onValueSearch)="handleOnChangeSearchValue($event)"
+      (onAddNewFile)="handleOnAddNewFile($event)">
+    </file-manager-list-toolbar>
+    <file-manager-list-details
+      #list>
+    </file-manager-list-details>
+    
   </div>
 </div>

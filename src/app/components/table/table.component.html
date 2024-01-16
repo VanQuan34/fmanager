@@ -10,7 +10,7 @@
     (scroll)="handleOnTableScroll($event)">
 
       <div [ngClass]="{'d-none' : !items || !items.length}">
-        <div class="{{bodyClassInclude}}" style="height: max-content;">
+        <div class="{{bodyClassInclude}}" style="overflow: hidden !important;">
           <ng-container *ngFor="let item of items; let i = index;"> 
             <ng-container *ngTemplateOutlet="templateRow; context: {rowItem: item,  rowIndex: i, rowLength: items.length}"></ng-container>
           </ng-container>
@@ -29,7 +29,7 @@
         <!-- no data -->
         <ng-container *ngIf="!fetchParam.search">
           <div class="d-flex flex-column align-items-center">
-            <img class="mo-wb-w-64px mo-wb-h-64px" src="./assets/images/404.jpg" />
+            <img class="mo-wb-w-64px mo-wb-h-64px" src="./assets/images/no-result.png" />
             <div class="mo-wb-mt-20px mo-wb-color-cap-txt">{{noneDataMsg | translate}}</div>
           </div>
         </ng-container>

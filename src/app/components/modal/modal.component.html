@@ -1,4 +1,4 @@
-<div class='mo-wb-modal' [style.display]="isOpen?'':'none'" [style.zIndex]="fixZIndex" 
+<div class='mo-wb-modal' [style.display]="isOpen?'':'nones'" [style.zIndex]="fixZIndex" 
 	(click)="handleOnClickClosePopup($event)" >
 	<div class="mo-wb-modal-wrapper" #viewContainerRef [style.width]="(width)?width:'calc(100vw - 100px)'"
 		[style.height]="(height)?height:'calc(100vh - 100px)'" [style.max-width]="maxWidth" [style.max-height]="maxHeight"
@@ -10,7 +10,7 @@
 				[class]="'mo-wb-cursor-pointer mo-wb-ml-20px mo-wb-mr-8px mo-wb-font-size-14px mo-wb-color-ffffff ' + (isCollapse ? 'mo-icn-down-arrow' : 'mo-icn-up-arrow')">
 			</span>
 			<span *ngIf="title"
-				[class]="'w-100 d-flex align-items-center mo-wb-font-head-1s ' + (hasCollapseBtn ? '' : classTitleInclude ? classTitleInclude : 'mo-wb-ml-40px')">
+				[class]="'w-100 d-flex align-items-center mo-wb-f-b1 ' + (hasCollapseBtn ? '' : classTitleInclude ? classTitleInclude : 'mo-wb-ml-40px')">
 				<mo-wb-components-button *ngIf="hasBackButton" classInclude="mo-wb-mr-8px" type="text-dark"
 					[classIconLeft]="'mo-icn-back-filter'" (onClick)="onHandleBackButtonClick($event)">
 				</mo-wb-components-button>

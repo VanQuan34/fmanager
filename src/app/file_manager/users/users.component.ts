@@ -32,6 +32,8 @@ export class FileManagerUsersComponents extends MoWbDetectionComponent {
   isCheckedAll: boolean;
   isCheckedItem: boolean;
   isClick: boolean;
+  isToggle:boolean;
+  
 
   @ViewChild('table') tableRef: MoWbTableComponent;
 
@@ -173,6 +175,11 @@ export class FileManagerUsersComponents extends MoWbDetectionComponent {
     this.menuItems = this.tableMenuItems;
   }
 
+  handleOnClickNav(e: boolean){
+    this.isToggle = e;
+    console.log('this.isToggle=', this.isToggle);
+  }
+
   async fetchListUsers(){
     const response = await this.authApiService.fetchListUsers();
     if(response.code === 500){
@@ -201,7 +208,7 @@ export class FileManagerUsersComponents extends MoWbDetectionComponent {
       // this._toast.show('error', response.message);
       this._toast.show('error', response.message);
 
-      this.tableRef.handleLoadDataCompleted(false, [], '');
+      this.tableRef.handleLoadDataCompleted(false, [], null);
       return;
     };
     const items = response.data;

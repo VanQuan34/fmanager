@@ -1,5 +1,5 @@
 import {
-  Component, Input, ChangeDetectionStrategy, Output, EventEmitter
+  Component, Input, ChangeDetectionStrategy, Output, EventEmitter, ViewChild, ElementRef, HostListener
 } from '@angular/core';
 import { MoWbDetectionComponent } from '../../../detection.component';
 
@@ -13,6 +13,7 @@ export class  MoWbV4ModalComponent extends MoWbDetectionComponent {
   
   isShow: boolean = false;
   fixMaxHeight: number;
+  emitted = false;
 
   @Input() hasHeader: boolean = true;
   @Input() hasFooter: boolean = true;
@@ -38,6 +39,9 @@ export class  MoWbV4ModalComponent extends MoWbDetectionComponent {
 
   @Output() onClose: EventEmitter<any> = new EventEmitter<any>();
   @Output() onOk: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onScrollEnd = new EventEmitter<any>();
+
+  @ViewChild('container') containerEl: ElementRef;
 
   override ngOnInit(): void {
     this.zIndex = 2500 + this.level;
@@ -174,4 +178,29 @@ export class  MoWbV4ModalComponent extends MoWbDetectionComponent {
   //   $(document).off('mousemove', this.handleOnMousemove);
   //   $(document).off('mouseup', this.handleOnMouseup);
   // }
+
+  handleOnScroll(event: any){
+    if(this.emitted){
+      return
+    }
+    if (!this.checkScrollToBottom()) {
+      return;
+    }
+    this.onScrollEnd.emit();
+    this.emitted = true;
+    console.log('scroll end')
+  }
+
+  /*
+   * check scroll to bottom
+   */
+  checkScrollToBottom() {
+    const containerEl = this.containerEl.nativeElement;
+    // console.log('containerEl).scrollTop()=', $(containerEl).scrollTop(), $(containerEl).innerHeight(), containerEl.scrollHeight)
+    if($(containerEl).scrollTop() + $(containerEl).innerHeight() > containerEl.scrollHeight - 5) {
+      // console.log('scroll reach to bottom');
+      return true;
+    }
+    return false;
+  }
 }

@@ -1,5 +1,5 @@
 // login.component.ts
-import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ComponentFactoryResolver, Injector, Input, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ToastTranslateService } from 'src/app/api/common/toast-translate.service';
 import { MoWbDetectionComponent } from 'src/app/components/detection.component';
@@ -7,6 +7,8 @@ import { IMenuSidebar } from '../../sidebar/sidebar.component';
 import { GLOBAL } from 'src/app/common/types/global/global';
 import { IToggleEvent } from 'src/app/components/button/api/toggle-event';
 import { MoWbInputComponent } from 'src/app/components/input/input.component';
+import { FileManagerSettingsAvatarComponents } from '../avatar/avatar.component';
+import { AddComponentToBodyService } from 'src/app/api/common/add-component-to-body.service';
 
 @Component({
   selector: 'file-manager-settings-account',
@@ -20,20 +22,23 @@ export class FileManagerSettingsAccountComponents extends MoWbDetectionComponent
   role: string;
   status: boolean;
   userInfo: any;
+  avatar: string;
 
   @Input() tabActive: IMenuSidebar
-
-  constructor(
-    public override _changeDetection: ChangeDetectorRef,
-    private _toast: ToastTranslateService
-  ) {
-    super(_changeDetection);
-  }
-  
   @Input() user: any;
 
   @ViewChild('firstName') firstName: MoWbInputComponent;
   @ViewChild('lastName') lastName: MoWbInputComponent;
+
+  constructor(
+    public override _changeDetection: ChangeDetectorRef,
+    private _toast: ToastTranslateService,
+    private _componentFactoryResolver: ComponentFactoryResolver,
+    private _injector: Injector,
+    private _domService: AddComponentToBodyService, 
+  ) {
+    super(_changeDetection);
+  }
 
   override ngOnInit(): void {
     this.roleList = [
@@ -94,6 +99,26 @@ export class FileManagerSettingsAccountComponents extends MoWbDetectionComponent
         this.userInfo.lastName = this.lastName.getValue();
         break;
     }
+  }
+
+  handleOnClickChangeAvatar(e: MouseEvent){
+    const modalRef =  this._componentFactoryResolver.resolveComponentFactory(FileManagerSettingsAvatarComponents).create(this._injector);
+    modalRef.instance.zIndex = 5000;
+    modalRef.instance.title = 'Thay đổi ảnh đại diện';
+    modalRef.instance.width = '800px';
+    modalRef.instance.height = '500px';
+
+    modalRef.instance.onClose.subscribe((event: any) => { 
+      this._domService.removeComponentFromBody(modalRef);
+    });
+    modalRef.instance.onChangeAvatar.subscribe((avatar: any) => {
+      this.avatar = avatar.src.tiny;
+      console.log(this.avatar);
+      
+      this._domService.removeComponentFromBody(modalRef);
+    });
+
+    this._domService.addDomToBody(modalRef);
   }
 
 }

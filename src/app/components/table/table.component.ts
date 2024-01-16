@@ -80,7 +80,7 @@ export class MoWbTableComponent extends MoWbDetectionComponent {
     // window.addEventListener('resize', this.handleOnWindowResize);
     if (this.items && this.items.length) {
       this.loaded = true;
-      this.canLoadMore = this.fetchParam.after_token ? true : false;
+      this.canLoadMore = false
     }
   }
 
@@ -194,7 +194,7 @@ export class MoWbTableComponent extends MoWbDetectionComponent {
    * @param items 
    * @param afterToken
    */
-  handleLoadDataCompleted(isSuccess: boolean, items: any[], afterToken: string) {
+  handleLoadDataCompleted(isSuccess: boolean, items: any[], offset: number) {
     // console.log('handleLoadDataCompleted afterToken=', afterToken);
     this.loading = false;
     this.isLoadingMore = false;
@@ -205,7 +205,7 @@ export class MoWbTableComponent extends MoWbDetectionComponent {
     }
 
     this.items = !this.loaded ? items : [...this.items, ...items];
-    this.fetchParam.after_token = afterToken;
+    this.fetchParam['offset'] = offset;
     this.detectChanges();
 
     if (!this.loaded) {
@@ -217,7 +217,8 @@ export class MoWbTableComponent extends MoWbDetectionComponent {
       }, 150);
     }
 
-    if (!items.length || items.length < this.fetchParam.per_page || (!this.fetchParam.page && !afterToken)) {
+    // this.canLoadMore = true;
+    if (!items.length || items.length < 15 || (!this.fetchParam.page && !offset)) {
       this.fetchParam.after_token = null;
       this.canLoadMore = false;
       return;
@@ -321,7 +322,7 @@ export class MoWbTableComponent extends MoWbDetectionComponent {
    */
   autoLoadMore() {
     console.log('autoLoadMore loaded=', this.loaded, ' canLoadMore=', this.canLoadMore, ' has scroll=',this.checkContainerHasScroll() );
-    if (this.loaded && (!this.fetchParam.after_token && !this.fetchParam.page)) {
+    if (this.loaded && (!this.fetchParam.offset && !this.fetchParam.page)) {
       this.canLoadMore = false;
     }
     if (this.loaded && this.canLoadMore && !this.checkContainerHasScroll()) {
@@ -347,10 +348,11 @@ export class MoWbTableComponent extends MoWbDetectionComponent {
     if (!this.checkScrollToBottom()) {
       return;
     }
+    console.log('this.loading=', this.loading, this.isLoadingMore, !this.loaded, !this.canLoadMore);
     if (this.loading || this.isLoadingMore ||  !this.loaded || !this.canLoadMore) {
       return;
     }
-    // console.log('handleOnTableScroll ')
+    console.log('handleOnTableScroll ')
     // load more
     this.loadMore();
   }

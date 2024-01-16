@@ -1,0 +1,27 @@
+<mo-wb-components-v4-modal
+  #modal
+  [title]="title | translate"
+  [width]="width"
+  [height]="height"
+  [isHideMenu]="false"
+  [label]="'Xác nhận' | translate"
+  [isPending]="loading"
+  [disable]="disable"
+  (onOk)="handleOnChangeAvatar($event)"
+  (onClose)="handleOnClose($event)"
+  (onScrollEnd)="handleOnLoadImages($event)">
+
+  <div class="h-100" #container>
+    <div class="d-flex flex-wrap">
+      <div *ngFor="let image of photos; index as idx" class="w-33 mo-wb-p-5px {{selectedId === idx ? 'selected': ''}}"
+        (click)="handleOnClickImage(image, idx)">
+        <img src="{{image.src['tiny']}}" class="w-100">
+      </div>
+    </div>
+    <mo-wb-components-spinner
+      *ngIf="!loaded"
+      [size]="'l'">
+    </mo-wb-components-spinner>
+  </div>
+
+</mo-wb-components-v4-modal>

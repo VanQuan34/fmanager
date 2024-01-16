@@ -1,8 +1,12 @@
+<file-manager-nav-components
+  (onClickToggle)="handleOnClickNav($event)">
+</file-manager-nav-components>
 <div class="d-flex h-100">
   <file-manager-sidebar
+    [isToggle]="isToggle"
     [menuActive]="'settings'">
   </file-manager-sidebar>
-  <div class="content mo-wb-ml-120px w-100 mo-wb-pl-15px">
+  <div class="content mo-wb-ml-120px mo-wb-ml-0-s1 w-100 mo-wb-pl-15px">
     <file-manager-topbar>
     </file-manager-topbar>
     <h2 class="mo-wb-font-size-22px">{{'Settings' | translate}}</h2>

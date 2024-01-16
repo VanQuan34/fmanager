@@ -1,0 +1,12 @@
+<div class="overlay position-fixed mo-wb-top-0 mo-wb-top-0 mo-wb-z-index-2700 w-100 h-100"
+  (click)="handleOnClickOverlay($event)">
+</div>
+<div class="iframe position-fixed mo-wb-z-index-3500 mo-wb-border-radius-4px mo-wb-p-10px mo-wb-bg-w">
+  <mo-wb-components-spinner
+  *ngIf="!loaded"
+  [size]="'l'">
+  </mo-wb-components-spinner>
+  <iframe class="w-100 h-100"
+    (load)="handleOnLoadedIframe($event)" [src]="src | safe">
+  </iframe>
+</div>

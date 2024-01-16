@@ -3,12 +3,12 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component,
   Input, Output, ViewChild, ViewRef } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { ToastTranslateService } from "src/app/api/common/toast-translate.service";
-import { MoWbFileApiService } from "src/app/api/media/fileApiService";
+// import { MoWbFileApiService } from "src/app/api/media/fileApiService";
 import { AddComponentToBodyService } from "src/app/api/common/add-component-to-body.service";
-import { MoWbMediaStoreModalComponent } from "src/app/media-store/store-modal/media-store-modal.component";
-import { MoWbMediaStoreEditModalComponent } from "src/app/media-store/edit/media-store-edit.component";
+// import { MoWbMediaStoreModalComponent } from "src/app/media-store/store-modal/media-store-modal.component";
+// import { MoWbMediaStoreEditModalComponent } from "src/app/media-store/edit/media-store-edit.component";
 import { MoWbDetectionComponent } from "../../detection.component";
-import { IWrapFile } from "src/app/common/types/media/wrap-file";
+// import { IWrapFile } from "src/app/common/types/media/wrap-file";
 import { uid } from "uid";
 // import { settings } from "cluster";
 
@@ -28,7 +28,7 @@ export class MoWbFileUploadV4Component extends MoWbDetectionComponent {
 
   loading: boolean = false;
   hideProgressBar: boolean = false;
-  fileList: IWrapFile[] = [];
+  fileList: any = []; //IWrapFile[]
   uploadFinished: boolean;
   isEmptyError: boolean;
   fileListHeight: string = 'auto';
@@ -46,7 +46,7 @@ export class MoWbFileUploadV4Component extends MoWbDetectionComponent {
   @Input() fileExtList: string[] = ['doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf'];
   @Input() imgExtList: string[] = ['gif', 'jpg', 'jpeg', 'png'];
   @Input() displayType: 'IMAGE' | 'LIST' = 'LIST';
-  @Input() originFiles: IWrapFile[] = [];
+  @Input() originFiles: any = []; //IWrapFile[]
   @Input() mode: 'UPLOAD' | 'FILE' = 'UPLOAD';
   @Input() hasInfo: boolean = true;
   @Input() maxTotalSize: number // don vi la MB.
@@ -98,7 +98,7 @@ export class MoWbFileUploadV4Component extends MoWbDetectionComponent {
     private componentFactoryResolver: ComponentFactoryResolver,
     private _domService: AddComponentToBodyService,
     private injector: Injector,
-    private _fileApiService: MoWbFileApiService,
+    // private _fileApiService: MoWbFileApiService,
     public override _changeDetection: ChangeDetectorRef,
     private _toast: ToastTranslateService,
     private _translate: TranslateService
@@ -342,7 +342,7 @@ export class MoWbFileUploadV4Component extends MoWbDetectionComponent {
       this.onChangeFile.emit(files);
       // fix svg file is not edit
       const isImage = file.type.match(/image.*/) && !file.type.includes('svg') ? true : false;
-      const wrapFile: IWrapFile = {
+      const wrapFile: any = { //IWrapFile
         name: file.name,
         file: file,
         size: this.convertFileSize(file.size),
@@ -496,7 +496,7 @@ export class MoWbFileUploadV4Component extends MoWbDetectionComponent {
       this.msgErrorLimitFile = '';
     }
     //check xem xoa het file bi oversize chưa
-    let errorFile = this.fileList.filter(item => item.isError === true);
+    let errorFile = this.fileList.filter((item: any) => item.isError === true);
     if (errorFile && !errorFile.length) {
       this.hasError = false;
       this.msgError = '';
@@ -527,82 +527,82 @@ export class MoWbFileUploadV4Component extends MoWbDetectionComponent {
     reader.readAsDataURL(file);
   };
 
-  showEditModal(fileDataUrl: string, fileItem: IWrapFile) {
-    const editModalRef = this.componentFactoryResolver.resolveComponentFactory(MoWbMediaStoreEditModalComponent).create(this.injector);
-    editModalRef.instance.imgSrcList = [fileDataUrl];
-    editModalRef.instance.mode = 'FILE';
-    // close modal
-    editModalRef.instance.onClose.subscribe((event) => {
-      setTimeout(() => {
-        this._domService.removeComponentFromBody(editModalRef);
-      }, 500);
-    });
+  showEditModal(fileDataUrl: string, fileItem: any) { //IWrapFile
+    // const editModalRef = this.componentFactoryResolver.resolveComponentFactory(MoWbMediaStoreEditModalComponent).create(this.injector);
+    // editModalRef.instance.imgSrcList = [fileDataUrl];
+    // editModalRef.instance.mode = 'FILE';
+    // // close modal
+    // editModalRef.instance.onClose.subscribe((event) => {
+    //   setTimeout(() => {
+    //     this._domService.removeComponentFromBody(editModalRef);
+    //   }, 500);
+    // });
 
-    editModalRef.instance.onFileSelected.subscribe((result: any) => {
-      fileItem.file = this.blobToFile(result.file, fileItem.name);
-      fileItem.size = this.convertFileSize(result.file.size);
-      fileItem.isError = !this.checkValidFileSize(result.file);
-      fileItem.url = result.url;
-      fileItem.isUpdate = true;
-      this.detectChanges();
-      this.onFileChanged.emit(this.fileList);
+    // editModalRef.instance.onFileSelected.subscribe((result: any) => {
+    //   fileItem.file = this.blobToFile(result.file, fileItem.name);
+    //   fileItem.size = this.convertFileSize(result.file.size);
+    //   fileItem.isError = !this.checkValidFileSize(result.file);
+    //   fileItem.url = result.url;
+    //   fileItem.isUpdate = true;
+    //   this.detectChanges();
+    //   this.onFileChanged.emit(this.fileList);
 
-    });
+    // });
 
-    this._domService.addDomToBody(editModalRef);
-    editModalRef.instance.showModal();
+    // this._domService.addDomToBody(editModalRef);
+    // editModalRef.instance.showModal();
   }
 
   showStoreMediaModal() {
-    const modalRef = this.componentFactoryResolver.resolveComponentFactory(MoWbMediaStoreModalComponent).create(this.injector);
-    modalRef.instance.mode = this.type;
-    modalRef.instance.multiple = this.multiple;
-    modalRef.instance.maxImageSize = this.maxImageSize;
-    modalRef.instance.maxFileSize = this.maxFileSize;
-    modalRef.instance.maxTotalFileSize = this.maxTotalSize;
-    modalRef.instance.maxSelected = this.limitFile - this.fileList.length;
+    // const modalRef = this.componentFactoryResolver.resolveComponentFactory(MoWbMediaStoreModalComponent).create(this.injector);
+    // modalRef.instance.mode = this.type;
+    // modalRef.instance.multiple = this.multiple;
+    // modalRef.instance.maxImageSize = this.maxImageSize;
+    // modalRef.instance.maxFileSize = this.maxFileSize;
+    // modalRef.instance.maxTotalFileSize = this.maxTotalSize;
+    // modalRef.instance.maxSelected = this.limitFile - this.fileList.length;
 
-    modalRef.instance.selectedFileUrls = this.fileList.map((item: any) => {
-      return item.url || item.origin_url;
-    });
-    modalRef.instance.onClose.subscribe((event) => {
-      setTimeout(() => {
-        this._domService.removeComponentFromBody(modalRef);
-      }, 500);
-    });
+    // modalRef.instance.selectedFileUrls = this.fileList.map((item: any) => {
+    //   return item.url || item.origin_url;
+    // });
+    // modalRef.instance.onClose.subscribe((event) => {
+    //   setTimeout(() => {
+    //     this._domService.removeComponentFromBody(modalRef);
+    //   }, 500);
+    // });
 
-    modalRef.instance.onSelectedFiles.subscribe((files: any[]) => {
-      this.detectChanges();
-      const addFiles: IWrapFile[] = files.map((item: any) => {
-        const file: IWrapFile = {
-          id: item.id,
-          name: item.filename,
-          origin_url: item.origin_url,
-          url: item.origin_url,
-          target_path: item.target_path,
-          size: item.origin_capacity,
-          mimetype: item.mimetype,
-          type: item.isImage ? 'IMAGE' : 'FILE',
-          uploaded: true,
-          thumbnail: this.getThumbnailFile(item),
-        }
-        return file;
-      });
+    // modalRef.instance.onSelectedFiles.subscribe((files: any[]) => {
+    //   this.detectChanges();
+    //   const addFiles: IWrapFile[] = files.map((item: any) => {
+    //     const file: IWrapFile = {
+    //       id: item.id,
+    //       name: item.filename,
+    //       origin_url: item.origin_url,
+    //       url: item.origin_url,
+    //       target_path: item.target_path,
+    //       size: item.origin_capacity,
+    //       mimetype: item.mimetype,
+    //       type: item.isImage ? 'IMAGE' : 'FILE',
+    //       uploaded: true,
+    //       thumbnail: this.getThumbnailFile(item),
+    //     }
+    //     return file;
+    //   });
 
-      for (let i = 0; i < addFiles.length; i++) {
-        this.fileList.splice(0, 0, addFiles[i]);
-      }
+    //   for (let i = 0; i < addFiles.length; i++) {
+    //     this.fileList.splice(0, 0, addFiles[i]);
+    //   }
 
-      if(this.fileList.length && !this.multiple) {
-        this.disable = true;
-      }
-      // console.log('fileList length=', this.fileList.length, ' multiple=', this.multiple, ' disable=', this.disable);
-      this.detectChanges();
-      this.onFileChanged.emit(this.fileList);
-      this.validate();
-    });
+    //   if(this.fileList.length && !this.multiple) {
+    //     this.disable = true;
+    //   }
+    //   // console.log('fileList length=', this.fileList.length, ' multiple=', this.multiple, ' disable=', this.disable);
+    //   this.detectChanges();
+    //   this.onFileChanged.emit(this.fileList);
+    //   this.validate();
+    // });
 
-    this._domService.addDomToBody(modalRef);
+    // this._domService.addDomToBody(modalRef);
   }
 
   getFileExtension(file: any) {
@@ -735,7 +735,7 @@ export class MoWbFileUploadV4Component extends MoWbDetectionComponent {
    */
   async uploadFiles(folderId: string = null) {
     // console.log('upload file folderId=', folderId);
-    const uploadFiles = this.fileList.filter(file => {
+    const uploadFiles = this.fileList.filter((file: any) => {
       return file.isError || file.uploaded ? false : true;
     });
     if (!uploadFiles || !uploadFiles.length) {
@@ -746,25 +746,25 @@ export class MoWbFileUploadV4Component extends MoWbDetectionComponent {
     this.detectChanges();
 
     for(let i=0; i < uploadFiles.length; i++) {
-      const wrapFile = uploadFiles[i];
-      wrapFile.uploading = true;
-      this.detectChanges();
-      const response = await this._fileApiService.uploadFile(wrapFile.file, folderId, wrapFile.name, false, wrapFile.imageSize); 
-      // console.log('wrapFile response =', response);
-      if (!response || response.code !== 200) {
-        this._toast.show('error', response && response.message);
-        wrapFile.uploading = false;
-        this.detectChanges();
-        continue;
-      }
-      wrapFile.uploaded = true;
-      wrapFile.url = response.data.url;
-      setTimeout(() => {
-        wrapFile.uploading = false;
-        this.detectChanges();
-      }, 150);
+      // const wrapFile = uploadFiles[i];
+      // wrapFile.uploading = true;
+      // this.detectChanges();
+      // const response = await this._fileApiService.uploadFile(wrapFile.file, folderId, wrapFile.name, false, wrapFile.imageSize); 
+      // // console.log('wrapFile response =', response);
+      // if (!response || response.code !== 200) {
+      //   this._toast.show('error', response && response.message);
+      //   wrapFile.uploading = false;
+      //   this.detectChanges();
+      //   continue;
+      // }
+      // wrapFile.uploaded = true;
+      // wrapFile.url = response.data.url;
+      // setTimeout(() => {
+      //   wrapFile.uploading = false;
+      //   this.detectChanges();
+      // }, 150);
       
-      this.detectChanges();
+      // this.detectChanges();
     }    
 
     setTimeout(() => {
@@ -792,9 +792,9 @@ export class MoWbFileUploadV4Component extends MoWbDetectionComponent {
     
   }
 
-  getImageSize(uploadFiles: IWrapFile[]) {
+  getImageSize(uploadFiles: any) { //IWrapFile[]
     let size: number = 0;
-    uploadFiles.forEach(file => {
+    uploadFiles.forEach((file: any) => {
       if (file.imageSize) {
         size += file.file.size
       }

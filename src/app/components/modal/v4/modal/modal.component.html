@@ -30,10 +30,11 @@
       [style.maxHeight]="fixMaxHeight+'px'" 
       class="mo-wb-modal-body {{classInclude}}" 
       [innerHtml]="content | translate"></div>
-    <div *ngIf="!content" 
+    <div *ngIf="!content" #container
       [style.height]="height"
       [style.maxHeight]="fixMaxHeight+'px'" 
-      class="mo-wb-modal-body {{classInclude}}">
+      class="mo-wb-modal-body {{classInclude}}"
+      (scroll)="handleOnScroll($event)">
       <ng-content >
 
       </ng-content>

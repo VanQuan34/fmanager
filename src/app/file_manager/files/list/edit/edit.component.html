@@ -1,0 +1,24 @@
+<mo-wb-components-v4-modal
+  #modal
+  [title]="title"
+  [width]="width"
+  [height]="'auto'"
+  [zIndex]="5000"
+  [label]="'Lưu'"
+  [isPending]="isPending"
+  [isHideMenu]="isHideMenu"
+  (onOk)="handleOnClickEditName($event)"
+  (onClose)="handleOnCloseModal()">
+  <div class="">
+    <mo-wb-components-input
+      #input
+      [value]="fileInfo.title"
+      [title]="'Tên Lading page'"
+      [showAsterisk]="true"
+      [maxLength]="50"
+      [classInclude]=""
+      [actionKey]="'KEY-UP'"
+      [placeholder]="'Nhập tên landing page'">
+    </mo-wb-components-input>
+  </div>
+</mo-wb-components-v4-modal>

@@ -1,0 +1,53 @@
+<mo-wb-components-v4-modal #modal
+  [title]="title | translate"
+  [width]="width"
+  [height]="'auto'"
+  [zIndex]="zIndex + 10"
+  [isHideMenu]="isHideMenu"
+  [label]="'Xác nhận' | translate"
+  [isPending]="loading"
+  [disable]="loading"
+  (onOk)="handleOnClickUploadAddSite($event)"
+  (onClose)="handleOnCloseModal()">
+
+  <div class="">
+    <mo-wb-components-input #input
+      [title]="'Nhâp tên file'"
+      [showAsterisk]="true"
+      [placeholder]="'i18n_import_content'"
+      [classInclude]="'mo-wb-py-10px'"
+      [maxLength]="50"
+      [value]="siteName"
+      [actionKey]="'KEY-UP'"
+      (onInputError)="handleErrorInputName($event)"
+      (onValueChanged)="handleOnNameValueChange($event)">
+    </mo-wb-components-input>
+    <p class="mo-wb-f-b1">{{'Chọn thư mục lưu'}}</p>
+    <mo-wb-components-select #select
+      [type]="'singe'"
+      [title]="'Folder'"
+      [hasSearch]="true"
+      [showAsterisk]="true"
+      [hasAddButton]="true"
+      [selectTitle]="'i18n_select_fol'"
+      [classInclude]="'mo-wb-my-10px'"
+      [items]="[]"
+      (onAddItem)="handleOnAddNewFolder($event)"
+      (onSelectedChange)="handleOnSelectCategory($event)">
+    </mo-wb-components-select>
+
+    <mo-wb-components-file-upload-v4 #upload
+      [classInclude]="'mo-wb-w-500px mo-wb-mt-10px'"
+      [type]="'FILE'"
+      [fromMedia]="false"
+      [isRequire]="true"
+      [multiple]="false"
+      [hasInfo]="false"
+      [showHelpText]="false"
+      [fieldLabel]="'File tải lên'"
+      [fileNote]="'Sử dụng file thiết kế sẵn từ máy tính của bạn'"
+      (onChangeFile)="handleOnFileChanged($event)"
+      (onValidationFailed)="handleError($event)">
+    </mo-wb-components-file-upload-v4>
+  </div>
+</mo-wb-components-v4-modal>

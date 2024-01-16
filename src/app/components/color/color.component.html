@@ -5,9 +5,10 @@
   [style.top]="top+'px'"
   [style.left]="left+'px'"
   class="position-absolute index-99999">
-  <color-sketch 
+  <color-sketch
+    [color]="colorFont" 
     [presetColors]="presetColors"
-    [width]="width ? width:  200"
+    [width]="width ? width:  240"
     (onChange)="handleChange($event)">
   </color-sketch>
   <div class="d-flex justify-content-end">

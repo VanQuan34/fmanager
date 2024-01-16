@@ -1,11 +1,14 @@
-<div *ngIf="tabActive.id === 'account'" class="account-info mo-wb-mt-30px mo-wb-overflow-auto" style="height: calc(100% - 220px);">
+<div class="account-info mo-wb-mt-30px mo-wb-overflow-auto" style="height: calc(100% - 220px);">
   <div class="d-flex align-items-center">
-    <div class="mo-wb-w-40px mo-wb-h-40px d-flex align-items-center justify-content-center mo-wb-color-fff mo-wb-f-b1 mo-wb-border-radius-50px" 
-    [style.background-color]="'' | getRandomColor">{{userInfo.firstName | getFirstCharacter}}
-  </div>
+    <div class="mo-wb-w-70px mo-wb-h-70px mo-wb-cursor-pointer d-flex align-items-center justify-content-center mo-wb-color-fff mo-wb-f-b1 mo-wb-border-radius-50px" 
+    [style.background-color]="'' | getRandomColor"
+    [style.background-image]="avatar ? 'url(' + avatar + ')' : ''"
+    (click)="handleOnClickChangeAvatar($event)"
+    style="background-size: cover; background-repeat: no-repeat; background-position: center center;">{{userInfo.firstName | getFirstCharacter}}
+    </div>
   <p class="mo-wb-f-b1 mo-wb-ml-15px">{{userInfo.firstName+ ' '+userInfo.lastName | translate}}</p>
   </div>
-  <div class="mo-wb-w-600px mo-wb-mt-30px">
+  <div *ngIf="tabActive.id === 'account'" class="mo-wb-w-600px mo-wb-mt-30px mo-wb-pr-15px">
     <div class="d-flex align-items-center">
       <div class="w-50">
       <label class="mo-wb-f-b1 mo-wb-mb-8px">First name<span class="mo-wb-color-r mo-wb-ml-3px">*</span></label>
@@ -50,7 +53,7 @@
         </div>
       <div class="w-50 mo-wb-ml-15px">
         <label class="mo-wb-f-b1 mo-wb-mb-8px">Status</label>
-        <div class="d-flex align-items-center">
+        <div class="d-flex">
           <mo-wb-components-button-toggle_button 
             [active]="userInfo.status"
             (onChangeToggle)="handleOnChangeStatus($event)">
@@ -87,8 +90,9 @@
       (onClick)="handleOnClickUpdateUser($event)">
     </mo-wb-components-button>
   </div>
-</div>
 
-<file-manager-settings-security
-  *ngIf="tabActive.id === 'security'">
-</file-manager-settings-security>
+  <file-manager-settings-security
+    *ngIf="tabActive.id === 'security'">
+  </file-manager-settings-security>
+
+</div>

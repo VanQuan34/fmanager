@@ -4,7 +4,13 @@
       (click)="handleOnClickToggleMenu($event)">
       <i class="mo-icn-Table-view mo-wb-font-size-16px mo-wb-font-weight-600"></i>
     </div>
+    <mo-wb-components-menu
+    [icon]="'mo-icn-profile-outline mo-wb-color-fff'"
+    [items]="menuItems"
+    [classInclude]="'mo-wb-bg-pri'"
+    (onSelectItem)="handleOnSelectItem($event)">  
+  </mo-wb-components-menu>
   </div>
 </div>
-<div class="overlay position-fixed mo-wb-left-0 mo-wb-top-0 mo-wb-bg-btn-txt mo-wb-z-index-1000 w-100 h-100 mo-wb-opacity-8 {{!isToggle ? 'd-none' : ''}}"
+<div class="overlay position-fixed mo-wb-left-0 mo-wb-top-0 mo-wb-bg-btn-txt mo-wb-z-index-2600 w-100 h-100 mo-wb-opacity-8 {{!isToggle ? 'd-none' : ''}}"
   (click)="handleOnClickToggleMenu($event)"></div>

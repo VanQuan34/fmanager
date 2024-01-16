@@ -11,6 +11,8 @@ import { Observable, timer } from 'rxjs';
 // import { CacheKeys } from '../../common/define/cache-keys.define';
 import { CURRENT_LANG } from 'src/app/common/language.define';
 import { AuthService } from 'src/app/auth.service';
+import { CacheKeys } from 'src/app/common/define/cache-keys.define';
+import { Utils } from 'src/app/file_manager/utils/utils';
 // import { DOMAIN_GET_SOURCES_STATIC } from '../../common/define/host-domain.define';
 // import { DefinePattern } from '../../common/define/pattern.define';
 // import { WEB_VERSION } from '../../common/define/version.define';
@@ -155,7 +157,20 @@ export class MoWbLoginComponent implements OnInit {
       this._router.navigate(['/dashboard']);
     } else{
       this._router.navigate(['/login']);
+      this.initTheme();
     }
+  }
+
+  initTheme(){
+    const theme = localStorage.getItem(CacheKeys.KEY_THEME);
+    let currentTheme = theme && JSON.parse(theme);
+    if(!theme){
+      currentTheme = {
+        '--pri': '#226FF5'
+      }
+    }
+    const primaryColor = currentTheme['--pri'];
+    Utils.buildRootColor(primaryColor);
   }
 
   async login() {

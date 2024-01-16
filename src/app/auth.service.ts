@@ -60,6 +60,7 @@ export class AuthService {
   }
 
   isAuthenticatedUser(): boolean {
+    console.log('check authen')
     const token = localStorage.getItem(CacheKeys.KEY_TOKEN);
     const decodeToken = token && this.jwtHelper.decodeToken(token) || null;
     const expired = decodeToken && decodeToken.exp;

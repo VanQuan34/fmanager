@@ -28,7 +28,7 @@ import { MoWbTableModule } from './table/table.module';
 // import { MoWbProgressBarModule } from './progressBar/progressBar.module';
 // import { MoWbScrollOverlayModule } from './scroll-overlay/scroll-overlay.module';
 // import { MoWbTagsModule } from './tags/tags.module';
-// import { MoWbFileUploadV4Module } from './upload/file-upload-v4/file-upload.module';
+import { MoWbFileUploadV4Module } from './upload/file-upload-v4/file-upload.module';
 // import { MoWbDatePickerModule } from './date-picker/date-picker.module';
 
 // components
@@ -66,7 +66,7 @@ import { MoWbLoginModule } from './login/login.module';
     // // MoWbDatePickerModule,
     MoWbSelectModule,
     MoWbHoverActionModule,
-    // // MoWbFileUploadV4Module,
+    MoWbFileUploadV4Module,
     MoWbTableModule,
     // MoWbProgressBarModule,
     // MoWbScrollOverlayModule,
@@ -105,7 +105,7 @@ import { MoWbLoginModule } from './login/login.module';
     // // MoWbAnimationModule,
     MoWbHoverActionModule,
     MoWbSelectModule,
-    // // MoWbFileUploadV4Module,
+    MoWbFileUploadV4Module,
     // // MoWbTestComponent,
     // // MoWbTestModalTest1Component,
     MoWbTableModule,

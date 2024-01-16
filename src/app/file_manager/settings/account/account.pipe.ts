@@ -1,5 +1,6 @@
 import { NgModule, Pipe, PipeTransform } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Pipe({ name: 'getFirstCharacter' })
 export class MoWbSitesListReportSidebarPipe implements PipeTransform {
@@ -24,6 +25,52 @@ export class MoWbSitesListReportSidebar3Pipe implements PipeTransform {
    }
 }
 
+@Pipe({ name: 'convertSize' })
+export class MoWbSitesListReportSidebar4Pipe implements PipeTransform {
+   transform(size: number) {
+    const kb = Math.round(size / 1024);
+    if(kb < 1024){
+      return kb+ ' KB';
+    }
+    return (kb / 1024).toFixed(2) + ' MB';
+   }
+}
+
+@Pipe({
+  name: 'safe'
+})
+export class SafePipe implements PipeTransform {
+  constructor(private sanitizer: DomSanitizer) { }
+  transform(url: any) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+}
+
+@Pipe({ name: 'convertImage' })
+export class MoWbSitesListReportSidebar5Pipe implements PipeTransform {
+  url = '';
+  transform(mimetype: string) {
+    switch (mimetype){
+      case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+        this.url = './assets/images/upload-file/excel.png';
+        break;
+      case 'text/plain':
+        this.url = './assets/images/upload-file/excel.png';
+        break;
+      case 'application/x-zip-compressed':
+        this.url = './assets/images/upload-file/excel.png';
+        break;
+      case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+        this.url = './assets/images/upload-file/word.png';
+        break;
+      default:
+        this.url = './assets/images/upload-file/file.png';
+        break;
+    }
+    return this.url;
+  }
+}
+
 function getRandomElement(array: Array<any>) {
   const randomIndex = Math.floor(Math.random() * array.length);
   return array[randomIndex];
@@ -34,12 +81,18 @@ function getRandomElement(array: Array<any>) {
   declarations: [
     MoWbSitesListReportSidebarPipe,
     MoWbSitesListReportSidebar2Pipe,
-    MoWbSitesListReportSidebar3Pipe
+    MoWbSitesListReportSidebar3Pipe,
+    MoWbSitesListReportSidebar4Pipe,
+    MoWbSitesListReportSidebar5Pipe,
+    SafePipe
   ],
   exports: [
     MoWbSitesListReportSidebarPipe,
     MoWbSitesListReportSidebar2Pipe,
-    MoWbSitesListReportSidebar3Pipe
+    MoWbSitesListReportSidebar3Pipe,
+    MoWbSitesListReportSidebar4Pipe,
+    MoWbSitesListReportSidebar5Pipe,
+    SafePipe
   ]
 })
 

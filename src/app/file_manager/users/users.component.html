@@ -1,8 +1,12 @@
+<file-manager-nav-components
+  (onClickToggle)="handleOnClickNav($event)">
+</file-manager-nav-components>
 <div class="d-flex h-100">
   <file-manager-sidebar
+    [isToggle]="isToggle"
     [menuActive]="'users'">
   </file-manager-sidebar>
-  <div class="content mo-wb-ml-120px w-100">
+  <div class="content mo-wb-ml-120px mo-wb-ml-0-s1 w-100">
     <file-manager-topbar>
     </file-manager-topbar>
     <div class="mo-wb-mt-0px h-100">
@@ -18,7 +22,7 @@
           [isClick]="false"
           [templateRow]="row"
           [items]="siteList"
-          [bodyClassInclude]="'mo-wb-bg-w'"
+          [bodyClassInclude]="'mo-wb-bg-w mo-wb-overflow-auto'"
           (onLoadedData)="handleOnTableLoadedData($event)">
       
           <!-- template header -->
@@ -50,7 +54,7 @@
           <!-- template row -->
           <ng-template #row let-rowItem="rowItem">
             <div #itemEl 
-              class="mo-wb-h-62px d-flex w-100 mo-wb-border-bottom-general mo-wb-bg-hover-bg position-relative">
+              class="mo-wb-h-62px d-flex w-100 mo-wb-border-bottom-general mo-wb-bg-hover-bg position-relative mo-wb-min-width-1000px">
               <!-- Columns -->
               <div *ngFor="let columnItem of tableColumns; let i = index;"
                 [style.width]="columnItem.width + columnItem.widthUnit"
